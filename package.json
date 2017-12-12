@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index"
+    "start": "node index"
+  },
+  "engines": {
+    "node": "9.2.0"
   },
   "keywords": [],
   "author": "",
