@@ -19,6 +19,6 @@ app.use('/api', require('./routes/api'));
 //     res.status(424).send({ error: err.message });
 // })
 
-app.listen(process.env.port || 3013, () => {
-    console.log('now listening for requests on port ' + 3013);
+app.listen(process.env.PORT || 3013, () => {
+    console.log('now listening for requests on port ' + process.env.PORT);
 })
