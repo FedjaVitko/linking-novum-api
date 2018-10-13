@@ -94,7 +94,12 @@ router.get('/links/:book/:chapter/:verse', (req, res, next) => {
         startChapterNameFrom: { $lte : req.params.chapter },
         endChapterNameFrom: { $gte: req.params.chapter },
         startVerseFrom: { $lte: req.params.verse },
-        endVerseFrom: { $gte: req.params.verse }
+        endVerseFrom: { $gte: req.params.verse },
+        bookTo: req.params.book,
+        startChapterNameTo: { $lte : req.params.chapter },
+        endChapterNameTo: { $gte: req.params.chapter },
+        startVerseTo: { $lte: req.params.verse },
+        endVerseTo: { $gte: req.params.verse }
     }).then(links => {
         res.send(links);
     })
