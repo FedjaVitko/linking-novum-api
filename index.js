@@ -1,31 +1,35 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const Hapi = require('hapi');
 const mongoose = require('mongoose');
+const RestHapi = require('rest-hapi');
+require('dotenv').load();
 
-// set up express app
-const app = express();
+async function api(){
+  try {
+    let server = Hapi.Server({ port: process.env.PORT || 3013 }, () => {
+        console.log('Linking Novum API is listening on port ' + process.env.PORT);
+    });
+    
+    let config = {
+        appTitle: "Linking Novum API",
+        mongo: {
+            URI: process.env.MONGO_URI
+        }
+    };
 
-// connect to mongodb
-mongoose.connect('mongodb://superUser:fedor1349@ds123136.mlab.com:23136/novum-testamentum', {
-    useMongoClient: true
-});
+    await server.register({
+      plugin: RestHapi,
+      options: {
+        mongoose,
+        config
+      }
+    });
 
-mongoose.Promise = global.Promise;
+    await server.start();
+    
+    return server;
+  } catch (err) {
+    console.log("Error starting server:", err);
+  }
+}
 
-app.use(cors());
-app.use(bodyParser.json())
-app.use('/api', require('./routes/api'));
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     next();
-// })
-// app.use((err, req, res, next) => {
-//     res.status(424).send({ error: err.message });
-// })
-
-app.listen(process.env.PORT || 3013, () => {
-    console.log('now listening for requests on port ' + process.env.PORT);
-})
+module.exports = api();

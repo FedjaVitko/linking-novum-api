@@ -1,0 +1,48 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.9.4/libexec/bin/yarn.js add body-parser
+
+PATH: 
+  /Users/fedor/.rvm/gems/ruby-2.2.3/bin:/Users/fedor/.rvm/gems/ruby-2.2.3@global/bin:/Users/fedor/.rvm/rubies/ruby-2.2.3/bin:/usr/local/php7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/fedor/.rvm/gems/ruby-2.2.3/bin:/Users/fedor/.rvm/gems/ruby-2.2.3@global/bin:/Users/fedor/.rvm/rubies/ruby-2.2.3/bin:/usr/local/php7/bin:/Users/fedor/.rvm/bin:/Users/fedor/.rvm/bin
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  8.11.4
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
+      at errnoException (dns.js:50:10)
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:92:26)
+
+npm manifest: 
+  {
+    "name": "linking-novum-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.18.2",
+      "cors": "^2.8.4",
+      "express": "^4.16.2",
+      "mongoose": "^4.13.5"
+    },
+    "devDependencies": {
+      "nodemon": "^1.12.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
