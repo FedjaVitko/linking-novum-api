@@ -7,22 +7,14 @@ module.exports = function(mongoose) {
             type: Types.ObjectId,
             ref: "book"
         },
-        startChapter: {
-            type: Types.ObjectId,
-            ref: "chapter"
-        },
-        startVerse: {
-            type: Types.ObjectId,
-            ref: "verse"
-        },
-        endChapter: {
-            type: Types.ObjectId,
-            ref: "chapter"
-        },
-        endVerse: {
+        startCounter: {
             type: Types.Number,
-            ref: "verse"
+            required: true
         },
+        endCounter: {
+            type: Types.Number,
+            required: true
+        }
     });
 
     Schema.statics = {
@@ -43,22 +35,6 @@ module.exports = function(mongoose) {
                     alias: "link",
                     linkingModel: "section_section"
                 },
-                startChapter: {
-                    type: "MANY_ONE",
-                    model: "chapter"
-                },
-                endChapter: {
-                    type: "MANY_ONE",
-                    model: "chapter"
-                },
-                startVerse: {
-                    type: "MANY_ONE",
-                    model: "verse"
-                },
-                endVerse: {
-                    type: "MANY_ONE",
-                    model: "verse"
-                }
             }
         }
     }
