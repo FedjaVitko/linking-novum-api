@@ -26,7 +26,12 @@ module.exports = function(mongoose) {
     });
 
     Schema.statics = {
-        collectionName: modelName
+        collectionName: modelName,
+        routeOptions: {
+            associations : {
+            
+            }
+        }
     }
 
     return Schema;
