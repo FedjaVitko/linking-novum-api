@@ -7,7 +7,7 @@ module.exports = function () {
 
   const Model = {
     Schema: {
-      description: {
+      comment: {
         type: Types.String
       }
     },

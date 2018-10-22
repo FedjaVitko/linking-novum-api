@@ -5,11 +5,11 @@ require('dotenv').load();
 
 async function api(){
   try {
-    let server = Hapi.Server({ port: process.env.PORT || 3013 }, () => {
+    const server = Hapi.Server({ port: process.env.PORT || 3013 }, () => {
         console.log('Linking Novum API is listening on port ' + process.env.PORT);
     });
     
-    let config = {
+    const config = {
         appTitle: "Linking Novum API",
         mongo: {
             URI: process.env.MONGO_URI
