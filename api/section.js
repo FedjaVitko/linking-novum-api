@@ -22,7 +22,7 @@ module.exports = function (server, mongoose, logger) {
 
     server.route({
       method: 'GET',
-      path: 'section/{bookId}/{verseCounter}/',
+      path: '/section/{bookId}/{verseCounter}',
       handler: getSectionCollectionHandlerByVerse,
       config: {
           tags: ['api']
