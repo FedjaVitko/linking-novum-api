@@ -8,6 +8,7 @@ async function api(){
     const server = Hapi.Server({ 
       port: process.env.PORT || 3013,
       routes: {
+        cors: true,
         validate : {
           failAction: (request, h, err) => {
             console.log(err);
