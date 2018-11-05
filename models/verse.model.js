@@ -27,10 +27,6 @@ module.exports = function(mongoose) {
         collectionName: modelName,
         routeOptions: {
             associations : {
-                sections : {
-                    type : "MANY_MANY",
-                    model: "section"
-                },
                 chapter : {
                     type: "MANY_ONE",
                     model: "chapter"

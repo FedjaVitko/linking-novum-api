@@ -29,15 +29,15 @@ module.exports = function(mongoose) {
                     type: "MANY_MANY",
                     model: "verse"
                 },
-                links: {
+                sections: {
                     type: "MANY_MANY",
                     model: "section",
-                    alias: "link",
-                    linkingModel: "section_section"
-                },
+                    alias: "section",
+                    linkingModel: "section1_section2"
+                }
             }
         }
-    }
+    };
 
     return Schema;
 }

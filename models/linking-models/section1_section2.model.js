@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 module.exports = function () {
-  const modelName = 'section_section';
+  const modelName = 'section1_section2';
 
   const Types = mongoose.Schema.Types;
 
   const Model = {
     Schema: {
-      comment: {
+      description: {
         type: Types.String
       }
     },

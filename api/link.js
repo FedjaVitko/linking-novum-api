@@ -1,11 +1,10 @@
-const fetch = require('node-fetch');
-
 module.exports = function (server, mongoose, logger) {
 
     const Book = mongoose.model('book');
     const Chapter = mongoose.model('chapter');
     const Verse = mongoose.model('verse');
     const Section = mongoose.model('section');
+    const Link = mongoose.model('mylink');
 
     const createLinkHandler = async (req, h) => {
         // TODO: really terrible way of doing this, I really need to refactor this
@@ -45,22 +44,32 @@ module.exports = function (server, mongoose, logger) {
             });            
         }
 
-        // const sectionToSection = await SectionToSection.create({
-        //     description: req.payload.description,
-        //     sectionFrom: fromSection._id,
-        //     sectionTo: toSection._id
+        let link = await Link.findOne({ $and: 
+            [ 
+                { $or: [{ 'section1' : fromSection._id }, { 'section2' : fromSection._id }] },
+                { $or: [{ 'section1' : toSection._id }, { 'section2' : toSection._id }] }
+            ] 
+        });
+
+        if (link == null) {
+            link = await Link.create({
+                section1: fromSection._id,
+                section2: toSection._id,
+                description: req.payload.description
+            });
+        }
+
+        // const itworked = await fetch(`http://localhost:3013/section/${fromSection._id}/link`, {
+        //     method: 'POST',
+        //     body: JSON.stringify([{
+        //         description: req.payload.description,
+        //         childId: toSection._id
+        //     }])
         // })
 
-        const itworked = await fetch(`http://localhost:3013/section/${fromSection._id}/link`, {
-            method: 'POST',
-            body: JSON.stringify({
-                description: req.payload.comment,
-                _id: toSection._id,
-                childId: fromSection._id
-            })
-        })
+        return link;
 
-        return await itworked.json();
+        // return await itworked.json();
     }
 
     server.route({
