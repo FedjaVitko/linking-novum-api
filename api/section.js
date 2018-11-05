@@ -10,12 +10,31 @@ module.exports = function (server, mongoose, logger) {
       );
     }
 
+    const getSectionCollectionHandlerByVerse = async (req, h) => {
+      return await Section.find({ $and: 
+        [
+          { 'book' : req.params.bookId },
+          { 'startCounter' : { $lte: verseCounter } },
+          { 'endCounter' : { $gte: verseCounter } }
+        ]
+      });
+    }
+
     server.route({
-        method: 'GET',
-        path: '/section/{id}/link',
-        handler: getLinkCollectionHandler,
-        config: {
-            tags: ['api']
-        } 
+      method: 'GET',
+      path: 'section/{bookId}/{verseCounter}/',
+      handler: getSectionCollectionHandlerByVerse,
+      config: {
+          tags: ['api']
+      } 
+    });
+
+    server.route({
+      method: 'GET',
+      path: '/section/{id}/link',
+      handler: getLinkCollectionHandler,
+      config: {
+        tags: ['api']
+      } 
     });
   };
