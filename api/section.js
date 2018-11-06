@@ -1,5 +1,6 @@
 module.exports = function (server, mongoose, logger) {
     const Link = mongoose.model('mylink');
+    const Section = mongoose.model('section');
 
     const getLinkCollectionHandler = async (req, h) => {
       return await Link.find().or(
@@ -14,8 +15,8 @@ module.exports = function (server, mongoose, logger) {
       return await Section.find({ $and: 
         [
           { 'book' : req.params.bookId },
-          { 'startCounter' : { $lte: verseCounter } },
-          { 'endCounter' : { $gte: verseCounter } }
+          { 'startCounter' : { $lte: req.params.verseCounter } },
+          { 'endCounter' : { $gte: req.params.verseCounter } }
         ]
       });
     }
